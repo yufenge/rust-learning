@@ -1,0 +1,8 @@
+{
+    // 让 rust-analyzer 更省资源（重要！）
+    "rust-analyzer.cargo.features": "all",
+    "rust-analyzer.check.command": "clippy", // 用 Clippy 做代码检查，更严格
+    "rust-analyzer.inlayHints.typeHints.enable": true, // 显示类型提示
+    "rust-analyzer.inlayHints.parameterHints.enable": true, // 显示参数名提示
+    "rust-analyzer.diagnostics.enable": true, // 实时显示错误
+}
