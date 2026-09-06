@@ -1,8 +1,9 @@
 use serde::Serialize;
 use serde::de::DeserializeOwned;
 
-use std::fs::{OpenOptions, read_to_string};
+use std::fs::{self, OpenOptions, read_to_string};
 use std::io::Write;
+use std::path::Path;
 
 const DATA_PATH: &str = "data/tasks.json";
 
@@ -10,12 +11,18 @@ pub fn save<T>(datas: &Vec<T>) -> Result<(), std::io::Error>
 where
     T: Serialize,
 {
+    let path = Path::new(DATA_PATH);
+
+    if let Some(parent) = path.parent() {
+        let _ = fs::create_dir_all(parent);
+    }
+
     let mut file = OpenOptions::new()
         .create(true)
         .write(true)
         .truncate(true)
         .append(false)
-        .open(DATA_PATH)?;
+        .open(path)?;
 
     let text = serde_json::to_string_pretty(datas)?;
 

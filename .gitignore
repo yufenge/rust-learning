@@ -57,3 +57,4 @@ logs/
 coverage/
 *.prof
 *.profraw
+projects/todo-cli/data/tasks.json
